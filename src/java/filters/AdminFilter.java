@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class AuthenticationFilter implements Filter {
+public class AdminFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
@@ -23,9 +23,9 @@ public class AuthenticationFilter implements Filter {
         HttpSession session = httpRequest.getSession();
         String email = (String) session.getAttribute("email");
 
-        if (email == null) {
+        if (!"cprg352+admin@gmail.com".equals(email)) {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
-            httpResponse.sendRedirect("login");
+            httpResponse.sendRedirect("notes");
             return;
         }
 
